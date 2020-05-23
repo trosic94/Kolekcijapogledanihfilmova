@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <PreferenceCategory app:title="@string/messages_header">-->
+
+<!--        <EditTextPreference-->
+<!--            app:key="signature"-->
+<!--            app:title="@string/signature_title"-->
+<!--            app:useSimpleSummaryProvider="true" />-->
+
+<!--        <ListPreference-->
+<!--            app:defaultValue="reply"-->
+<!--            app:entries="@array/reply_entries"-->
+<!--            app:entryValues="@array/reply_values"-->
+<!--            app:key="reply"-->
+<!--            app:title="@string/reply_title"-->
+<!--            app:useSimpleSummaryProvider="true" />-->
+
+<!--    </PreferenceCategory>-->
+
+    <PreferenceCategory app:title="Splash screen">
+
+        <SwitchPreferenceCompat
+            app:key="splashscreen"
+            app:title="Ukljuci splash screen"
+            />
+
+        <EditTextPreference
+            app:key="splashscreentime"
+            app:dependency="splashscreen"
+            app:title="Vreme trajanja splash screen-a"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="3"
+            />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
