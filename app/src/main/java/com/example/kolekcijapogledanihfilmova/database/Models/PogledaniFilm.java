@@ -59,6 +59,8 @@ public class PogledaniFilm {
         this.ocena = ocena;
         this.datumgledanja = datumgledanja;
     }
+
+
     public PogledaniFilm(){};
 
     public int getId() {

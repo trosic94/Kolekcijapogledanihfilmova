@@ -50,6 +50,7 @@ public class MovieProfileFragment extends Fragment {
     Context cnt;
     String urlPoster;
 
+
     public MovieProfileFragment() {
         // Required empty public constructor
     }
@@ -83,11 +84,7 @@ public class MovieProfileFragment extends Fragment {
         plot = view.findViewById(R.id.txtProfilPlot);
         language = view.findViewById(R.id.txtProfilLanguage);
         poster = view.findViewById(R.id.imgProfilPoster);
-        try {
-            dodajUPogledano();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
     public DbHelper getDatabaseHelper() {
         if (databaseHelper == null) {
@@ -103,6 +100,7 @@ public class MovieProfileFragment extends Fragment {
 
         Call<DetailSearch> call = Service.apiInterface().getMoviesById(query);
         call.enqueue(new Callback<DetailSearch>() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onResponse(Call<DetailSearch> call, Response<DetailSearch> response) {
 
@@ -116,6 +114,11 @@ public class MovieProfileFragment extends Fragment {
                     language.setText(detailSearch.getLanguage());
                     urlPoster = detailSearch.getPoster();
                     Picasso.with(cnt).load(detailSearch.getPoster()).into(poster);
+                    try {
+                        dodajUPogledano();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -134,7 +137,7 @@ public class MovieProfileFragment extends Fragment {
         List<PogledaniFilm> repertoars = getDatabaseHelper().getPogledaniFilm().queryForAll();
         for (PogledaniFilm r:repertoars
         ) {
-            Log.d("REPLIST",""+r.getFilmid());
+            Log.d("REPLIST",""+r.getGodina());
         }
     }
 }
